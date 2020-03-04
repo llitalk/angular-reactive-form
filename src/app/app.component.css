@@ -1,0 +1,49 @@
+h3 {
+  font-family: "Dancing Script";
+}
+
+.menu {
+  position: absolute;
+  right: 0px;
+}
+
+main {
+  grid-column: span 12;
+  height: 100%;
+  margin-top: 0 !important;
+}
+
+.wrapper {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  border: none;
+  margin-left: auto;
+  cursor: pointer;
+  background: transparent;
+}
+
+section {
+  height: 100%;
+  box-sizing: border-box;
+  margin-top: 0 !important;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 100%;
+}
+
+section > * {
+  margin-top: 0 !important;
+  margin: 0;
+}
+
+
+main {
+  grid-column: span 12;
+  height: 100%;
+  margin-top: 0 !important;
+}

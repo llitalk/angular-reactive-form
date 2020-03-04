@@ -1,0 +1,83 @@
+<div class="order-container">
+  <mat-card class="card-form">
+    <h1>Select Yout Trip</h1>
+
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <mat-form-field class="example-full-width">
+        <mat-label>First name</mat-label>
+        <input
+          matInput
+          placeholder="please enter first name"
+          formControlName="customeFirstName"
+        />
+        <mat-error *ngIf="form.get('customeFirstName').hasError('required')">
+          enter first name
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <br />
+
+      <mat-form-field class="example-full-width">
+        <mat-label>last name</mat-label>
+        <input
+          matInput
+          placeholder="please enter last name"
+          formControlName="customeLastName"
+        />
+        <mat-error *ngIf="form.get('customeLastName').hasError('required')">
+          enter last name
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+      <br />
+
+      <mat-form-field color="accent">
+        <mat-label>start your vication at</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="startDate" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker1"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        <mat-error *ngIf="form.get('startDate').hasError('required')">
+          enter valid date
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+      <mat-form-field color="accent">
+        <mat-label>end your vication at</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="endDate" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+        <mat-error *ngIf="form.get('endDate').hasError('required')">
+          enter valid date
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+      <br />
+      <div formArrayName="destinations">
+        <div *ngFor="let destination of destinations().controls; let i = index">
+          <div [formGroupName]="i">
+            {{ i }}
+            destination :
+            <input type="text" formControlName="destination" />
+            hotel:
+            <input type="text" formControlName="hotel" />
+
+            <button (click)="removeDestinations(i)">Remove</button>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" mat-raised-button color="accent">
+        Save
+      </button>
+    </form>
+  </mat-card>
+</div>
