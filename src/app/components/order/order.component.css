@@ -8,9 +8,19 @@
 .card-form{
     text-align: center;
     position: absolute;
-    height: 500px;
+    height: 600px;
     width: 400px;
     margin: -100px 0 0 -200px;
     top: 30%;
     left: 50%;
+}
+
+
+.remove-button{
+  color: red;
+}
+
+.example-full-width {
+  width: 100%;
+  text-align: center;
 }

@@ -12,6 +12,7 @@ import {
   FormArray
 } from "@angular/forms";
 import * as moment from "moment";
+import { TripService } from "src/app/trip.service";
 
 export function checkIfEndDateAfterStartDate(c: AbstractControl): any {
   const startDate = c.get("startDate").value;
@@ -29,10 +30,20 @@ export function checkIfEndDateAfterStartDate(c: AbstractControl): any {
 })
 export class OrderComponent implements OnInit {
   form: FormGroup;
+  selectedValue: string;
   startDate = new Date(2020, 0, 1);
   endDate = new Date(2020, 0, 1);
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group(
+  constructor(private service: TripService) {}
+
+  //  newDestination(): FormGroup {
+  //     return this.fb.group({
+  //       destination: "",
+  //       hotel: ""
+  //     });
+  //   }
+
+  ngOnInit() {
+    this.form = new FormGroup(
       {
         customeLastName: new FormControl("", [
           Validators.required,
@@ -45,7 +56,9 @@ export class OrderComponent implements OnInit {
         ]),
         startDate: new FormControl(this.startDate),
         endDate: new FormControl(this.endDate),
-        destinations: this.fb.array([])
+        destinationsTarget: new FormArray([
+          new FormControl("", [Validators.required])
+        ])
       },
       {
         validators: checkIfEndDateAfterStartDate
@@ -53,14 +66,10 @@ export class OrderComponent implements OnInit {
     );
   }
 
-  newDestination(): FormGroup {
-    return this.fb.group({
-      destination: "",
-      hotel: ""
-    });
+  getOptionReason() {
+    const tripOption = this.service.getTripReason();
+    return tripOption;
   }
-
-  ngOnInit() {}
 
   save() {
     if (this.form.valid) {
@@ -74,12 +83,30 @@ export class OrderComponent implements OnInit {
   }
 
   //add destinations
-  addDestinations() {
-    this.destinations.push(this.newDestination());
-  }
+  // addDestinations() {
+  //   this.destinations.push(this.newDestination());
+  // }
 
   //remove destinations
-  removeDestinations(i: number) {
-    this.destinations.removeAt(i);
+  // removeDestinations(i: number) {
+  //   this.destinations.removeAt(i);
+  // }
+
+  addTargetDestinations() {
+    const formArray: FormArray = this.form.controls
+      .destinationsTarget as FormArray;
+    formArray.push(new FormControl("", [Validators.required]));
+  }
+
+  removeDestinationsTarget(index: number) {
+    const formArray: FormArray = this.form.controls
+      .destinationsTarget as FormArray;
+    formArray.removeAt(index);
+  }
+  // here's a computed value if we don't want to get an error in the initialization
+  get destinationsTarget() {
+    return this.form
+      ? (this.form.controls.destinationsTarget as FormArray).controls
+      : [];
   }
 }

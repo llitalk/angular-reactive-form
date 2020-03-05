@@ -9,6 +9,7 @@ import { AboutusComponent } from "./components/aboutus/aboutus.component";
 import { OrderComponent } from "./components/order/order.component";
 import { HomeComponent } from "./components/home/home.component";
 import { FooterComponent } from "./components/footer/footer.component";
+import { TripService } from "../app/trip.service";
 import {
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter
@@ -28,7 +29,7 @@ import {
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [TripService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

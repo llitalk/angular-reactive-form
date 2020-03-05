@@ -9,6 +9,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatNativeDateModule} from '@angular/material';
+import {MatSelectModule} from '@angular/material/select';
 
 
 export const material = [
@@ -20,7 +21,8 @@ export const material = [
   MatToolbarModule,
   MatCardModule,
   MatMenuModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatSelectModule
 ];
 
 @NgModule({

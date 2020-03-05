@@ -59,21 +59,40 @@
         </mat-error>
       </mat-form-field>
 
-      <br />
-      <br />
-      <div formArrayName="destinations">
-        <div *ngFor="let destination of destinations().controls; let i = index">
-          <div [formGroupName]="i">
-            {{ i }}
-            destination :
-            <input type="text" formControlName="destination" />
-            hotel:
-            <input type="text" formControlName="hotel" />
-
-            <button (click)="removeDestinations(i)">Remove</button>
-          </div>
-        </div>
+      <div
+        class="control"
+        formArrayName="destinationsTarget"
+        *ngFor="let control of destinationsTarget; let i = index"
+      >
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Enter Your Target"
+            [formControlName]="i"
+          />
+        </mat-form-field>
+        <button type="button" mat-icon-button (click)="addTargetDestinations()">
+          <mat-icon>add_circle_outline </mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon
+            class="remove-button"
+            (click)="removeDestinationsTarget(i)"
+            matSuffix
+            >clear</mat-icon
+          >
+        </button>
       </div>
+
+      <mat-form-field>
+        <mat-select placeholder="Select.." [(ngModel)]="tripOption">
+          <mat-option
+            *ngFor="let option of getOptionReason()"
+            [value]="option.id"
+            >{{ option.reason }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
 
       <button type="submit" mat-raised-button color="accent">
         Save
