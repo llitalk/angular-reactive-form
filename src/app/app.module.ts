@@ -10,6 +10,8 @@ import { OrderComponent } from "./components/order/order.component";
 import { HomeComponent } from "./components/home/home.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { TripService } from "../app/trip.service";
+import { FormsModule } from "@angular/forms";
+import { ToastrModule } from "ngx-toastr";
 import {
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter
@@ -27,7 +29,9 @@ import {
     AppRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [TripService],
   bootstrap: [AppComponent]

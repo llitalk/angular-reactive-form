@@ -1,0 +1,11 @@
+.imag-about {
+  width: 100%;
+  background-repeat: no-repeat;
+  min-height: 350px;
+  padding: 30px;
+background-size: 100%;;
+  background-image: url("https://cdn.shopify.com/s/files/1/0050/6711/2534/files/about-us-banner_aries_large.jpg?v=1553812654");
+}
+.card-about{
+    text-align: center;
+}

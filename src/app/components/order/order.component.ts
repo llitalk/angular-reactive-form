@@ -13,6 +13,8 @@ import {
 } from "@angular/forms";
 import * as moment from "moment";
 import { TripService } from "src/app/trip.service";
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 export function checkIfEndDateAfterStartDate(c: AbstractControl): any {
   const startDate = c.get("startDate").value;
@@ -30,10 +32,11 @@ export function checkIfEndDateAfterStartDate(c: AbstractControl): any {
 })
 export class OrderComponent implements OnInit {
   form: FormGroup;
+  tripOption = "";
   selectedValue: string;
   startDate = new Date(2020, 0, 1);
   endDate = new Date(2020, 0, 1);
-  constructor(private service: TripService) {}
+  constructor(private service: TripService, private toastr: ToastrService, public router : Router) {}
 
   //  newDestination(): FormGroup {
   //     return this.fb.group({
@@ -74,6 +77,9 @@ export class OrderComponent implements OnInit {
   save() {
     if (this.form.valid) {
       console.log("dsdsdsd");
+
+      this.toastr.success('great', 'Submit form');
+      this.router.navigate(['/home']);
     }
   }
 
