@@ -1,7 +1,4 @@
 # Meetup
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
-working with angular  version 8.3.8.
 here there is ex for. :
  angular v8 .
 *angular material and mat error.
